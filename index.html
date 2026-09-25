@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゴールドコイン・クリッカー ULTRA EX</title>
+    <!-- コインのファビコン -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23eab308' stroke='%23713f12' stroke-width='6'/><circle cx='50' cy='50' r='36' fill='none' stroke='%23713f12' stroke-width='2' stroke-dasharray='4 3'/><text x='50' y='66' font-family='sans-serif' font-size='48' font-weight='900' fill='%23713f12' text-anchor='middle'>$</text></svg>">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -137,7 +139,7 @@
                     <h1 class="font-bold text-base sm:text-lg leading-tight text-yellow-400 flex items-center gap-2">
                         ゴールドコイン・クリッカー <span class="text-[10px] bg-gradient-to-r from-yellow-500 to-amber-500 text-slate-950 font-black px-2 py-0.5 rounded-full shadow">ULTRA EX</span>
                     </h1>
-                    <p class="text-[11px] text-slate-400 hidden sm:block">昇天・黄金流星・カジノ・実績 搭載の最終形態</p>
+                    <p class="text-[11px] text-slate-400 hidden sm:block">レベルアップ昇天・黄金流星・カジノ・実績 搭載の最終形態</p>
                 </div>
             </div>
             
@@ -150,7 +152,7 @@
                     <i id="soundIcon" class="fa-solid fa-volume-high text-yellow-400"></i>
                     <span id="soundText" class="hidden sm:inline">Sound ON</span>
                 </button>
-                <button onclick="openResetModal()" class="px-2.5 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/50 border border-red-800/50 text-red-300 text-xs font-medium transition flex items-center gap-1">
+                <button onclick="openResetModal()" class="px-2.5 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/50 border border-red-800/50 text-red-300 text-xs font-medium transition flex items-center gap-1" title="データリセット">
                     <i class="fa-solid fa-rotate-right"></i>
                 </button>
             </div>
@@ -321,13 +323,16 @@
                 </div>
             </div>
 
-            <!-- Tab 4: 転生・昇天（Ascension / Prestige） -->
+            <!-- Tab 4: 転生・昇天 -->
             <div id="tabContentAscension" class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 shadow-lg backdrop-blur-sm hidden space-y-4">
                 <div class="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-purple-950/80 p-4 rounded-xl border border-indigo-800/50 flex flex-col items-center text-center">
                     <div class="w-12 h-12 rounded-full bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-2xl mb-2">
                         <i class="fa-solid fa-angles-up"></i>
                     </div>
-                    <h2 class="font-black text-lg text-indigo-200">神聖なる昇天（Ascension）</h2>
+                    <div class="flex items-center gap-2">
+                        <h2 class="font-black text-lg text-indigo-200">神聖なる昇天（Ascension）</h2>
+                        <span id="ascensionLevelBadge" class="bg-indigo-500 text-white font-black text-[11px] px-2.5 py-0.5 rounded-full shadow">Lv. 0</span>
+                    </div>
                     <p class="text-xs text-slate-300 mt-1 max-w-md">
                         現在のコインと全施設を捧げることで次元を昇天し、<strong class="text-indigo-300">ヘブンリー・ソウル（Soul）</strong>を獲得します。
                         ソウル1個につき<span class="text-yellow-400 font-bold">全収入+10%</span>の永続加護を得ます！
@@ -349,7 +354,11 @@
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                         <span>昇天を実行してソウルを獲得</span>
                     </button>
-                    <p class="text-[10px] text-slate-500 mt-2">※最小必要周回コイン: 1,000,000,000 (1B)</p>
+                    <!-- スケールする次回必要コイン表示 -->
+                    <p class="text-[11px] text-amber-300/90 mt-2 font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        次回レベルアップ必要最低コイン: <span id="ascendRequiredCoinDisplay" class="text-yellow-400 underline font-extrabold">1 B</span>
+                    </p>
                 </div>
 
                 <!-- ソウルスキルツリー -->
@@ -363,7 +372,7 @@
                 </div>
             </div>
 
-            <!-- Tab 5: カジノ・コイントス（Casino Mini-Game） -->
+            <!-- Tab 5: カジノ・コイントス -->
             <div id="tabContentCasino" class="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 shadow-lg backdrop-blur-sm hidden space-y-4">
                 <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700/60 text-center">
                     <h2 class="font-bold text-base text-emerald-400 flex items-center justify-center gap-2">
@@ -433,7 +442,7 @@
 
     <!-- フッター -->
     <footer class="border-t border-slate-800/80 bg-slate-950 py-3 text-center text-xs text-slate-500 mt-6">
-        <p>© 2026 Gold Coin Clicker ULTRA EX - Smooth Expansion Edition</p>
+        <p>© 2026 Gold Coin Clicker ULTRA EX - Dynamic Ascension Level Scale Edition</p>
     </footer>
 
     <!-- リセット確認用カスタムモーダル -->
@@ -444,7 +453,7 @@
                 <h3 class="font-bold text-base text-white">ゲームデータのリセット</h3>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">
-                これまでに獲得した全てのコイン、施設、ソウル、実績データが完全に消去されます。本当にやり直しますか？
+                これまでに獲得した全てのコイン、施設、ソウル、昇天レベル、実績データが完全に消去されます。本当にやり直しますか？
             </p>
             <div class="flex gap-2 justify-end pt-2">
                 <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition">
@@ -480,7 +489,7 @@
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <script>
-        // 英語の接尾語単位（Short Scale: 1,000ごと完全定義）
+        // 短縮数値用単位 (Short Scale)
         const ENGLISH_UNITS = [
             '', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 
             'Dc', 'Ud', 'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Ocd', 'Nod', 
@@ -512,7 +521,7 @@
             { id: 'dysonSphere', name: '恒星ダイソン球', icon: 'fa-sun', baseCost: 150000000000, cost: 150000000000, cps: 1000000000, count: 0 },
             { id: 'blackholeForge', name: 'ブラックホールForge', icon: 'fa-circle-dot', baseCost: 550000000000, cost: 550000000000, cps: 3200000000, count: 0 },
             { id: 'darkMatterConverter', name: '暗黒物質コンバーター', icon: 'fa-ghost', baseCost: 2000000000000, cost: 2000000000000, cps: 10000000000, count: 0 },
-            { id: 'dimensionPortal', name: '次元ポータル採掘所', icon: 'fa-door-open', baseCost: 7500000000000, cost: 7500000000000, cps: 32000000000, count: 0 },
+            { id: 'dimensionPortal', name: '次元ポータル採掘所', icon: 'fa-door-open', baseCost: 7500000000000, cost: 7500000000000, cps: 3200000000, count: 0 },
             { id: 'quantumCondenser', name: '量子タキオン凝縮器', icon: 'fa-microchip', baseCost: 28000000000000, cost: 28000000000000, cps: 100000000000, count: 0 },
             { id: 'timeMachineBank', name: 'タイムライン利息機', icon: 'fa-hourglass-half', baseCost: 100000000000000, cost: 100000000000000, cps: 320000000000, count: 0 },
             { id: 'parallelSync', name: '平行世界ゴールド同期器', icon: 'fa-cubes', baseCost: 380000000000000, cost: 380000000000000, cps: 1000000000000, count: 0 },
@@ -555,132 +564,76 @@
             { id: 'clickMult9', name: '重力波クリック', mult: 8, cost: 3800000, bought: false, desc: 'タップ獲得量 さらに8倍' },
             { id: 'clickMult10', name: '時空断裂クリック', mult: 10, cost: 18000000, bought: false, desc: 'タップ獲得量 さらに10倍' },
             { id: 'clickMult11', name: '亜光速インパクト', mult: 15, cost: 90000000, bought: false, desc: 'タップ獲得量 さらに15倍' },
-            { id: 'clickMult12', name: '神の指先', mult: 20, cost: 450000000, bought: false, desc: 'タップ獲得量 さらに20倍' },
-            { id: 'clickMult13', name: '次元穿孔タップ', mult: 30, cost: 2200000000, bought: false, desc: 'タップ獲得量 さらに30倍' },
-            { id: 'clickMult14', name: '因果律崩壊クリック', mult: 50, cost: 11000000000, bought: false, desc: 'タップ獲得量 さらに50倍' },
-            { id: 'clickMult15', name: '創世神のタッチ', mult: 80, cost: 60000000000, bought: false, desc: 'タップ獲得量 さらに80倍' },
-            { id: 'clickMult16', name: '全知全能タップ', mult: 120, cost: 320000000000, bought: false, desc: 'タップ獲得量 さらに120倍' },
-            { id: 'clickMult17', name: '無限次元クリック', mult: 200, cost: 1800000000000, bought: false, desc: 'タップ獲得量 さらに200倍' },
-            { id: 'clickMult18', name: '絶対神速連打', mult: 350, cost: 10000000000000, bought: false, desc: 'タップ獲得量 さらに350倍' },
-            { id: 'clickMult19', name: '概念超越タップ', mult: 500, cost: 60000000000000, bought: false, desc: 'タップ獲得量 さらに500倍' },
-            { id: 'clickMult20', name: '全宇宙掌握タップ', mult: 1000, cost: 380000000000000, bought: false, desc: 'タップ獲得量 さらに1,000倍' },
-            { id: 'clickMult21', name: 'オムニ・タッチ', mult: 2000, cost: 2500000000000000, bought: false, desc: 'タップ獲得量 さらに2,000倍' },
-            { id: 'clickMult22', name: '現実書き換えクリック', mult: 5000, cost: 18000000000000000, bought: false, desc: 'タップ獲得量 さらに5,000倍' },
-            { id: 'clickMult23', name: '無限法則タップ', mult: 10000, cost: 120000000000000000, bought: false, desc: 'タップ獲得量 さらに10,000倍' },
-            { id: 'clickMult24', name: '終極ワンタップ', mult: 25000, cost: 900000000000000000, bought: false, desc: 'タップ獲得量 さらに25,000倍' },
-            { id: 'clickMult25', name: '真なる創世撃', mult: 100000, cost: 7000000000000000000, bought: false, desc: 'タップ獲得量 さらに100,000倍' }
+            { id: 'clickMult12', name: '神の指先', mult: 20, cost: 500000000, bought: false, desc: 'タップ獲得量 さらに20倍' }
         ];
 
-        const INITIAL_GLOBAL_BOOSTERS = [
-            { id: 'boost1', name: '黄金の熱狂', mult: 2, cost: 200, bought: false, desc: '全収益 (タップ+毎秒) 2倍' },
-            { id: 'boost2', name: 'ラッキーフィーバー', mult: 2, cost: 1000, bought: false, desc: '全収益 さらに2倍' },
-            { id: 'boost3', name: '大富豪のオーラ', mult: 2.5, cost: 6000, bought: false, desc: '全収益 さらに2.5倍' },
-            { id: 'boost4', name: 'ゴールドラッシュ', mult: 2.5, cost: 35000, bought: false, desc: '全収益 さらに2.5倍' },
-            { id: 'boost5', name: '王家の祝福', mult: 3, cost: 200000, bought: false, desc: '全収益 さらに3倍' },
-            { id: 'boost6', name: 'ミダスの手触り', mult: 3, cost: 1200000, bought: false, desc: '全収益 さらに3倍' },
-            { id: 'boost7', name: '賢者の石の波動', mult: 4, cost: 8000000, bought: false, desc: '全収益 さらに4倍' },
-            { id: 'boost8', name: '神聖なる黄金加護', mult: 4, cost: 50000000, bought: false, desc: '全収益 さらに4倍' },
-            { id: 'boost9', name: '恒星級ゴールド狂詩曲', mult: 5, cost: 320000000, bought: false, desc: '全収益 さらに5倍' },
-            { id: 'boost10', name: '宇宙黄金共鳴', mult: 6, cost: 2200000000, bought: false, desc: '全収益 さらに6倍' },
-            { id: 'boost11', name: '銀河系富の集約', mult: 8, cost: 15000000000, bought: false, desc: '全収益 さらに8倍' },
-            { id: 'boost12', name: '次元超越ゴールド磁場', mult: 10, cost: 100000000000, bought: false, desc: '全収益 さらに10倍' },
-            { id: 'boost13', name: '時空統一黄金共鳴', mult: 15, cost: 750000000000, bought: false, desc: '全収益 さらに15倍' },
-            { id: 'boost14', name: '多元宇宙黄金法則', mult: 20, cost: 5000000000000, bought: false, desc: '全収益 さらに20倍' },
-            { id: 'boost15', name: '神々を凌駕する富', mult: 30, cost: 38000000000000, bought: false, desc: '全収益 さらに30倍' },
-            { id: 'boost16', name: '全知全能の錬金術', mult: 50, cost: 280000000000000, bought: false, desc: '全収益 さらに50倍' },
-            { id: 'boost17', name: '概念超越の富の波動', mult: 80, cost: 2000000000000000, bought: false, desc: '全収益 さらに80倍' },
-            { id: 'boost18', name: '無限ゴールド神話', mult: 120, cost: 15000000000000000, bought: false, desc: '全収益 さらに120倍' },
-            { id: 'boost19', name: '超次元オーラ', mult: 200, cost: 110000000000000000, bought: false, desc: '全収益 さらに200倍' },
-            { id: 'boost20', name: 'オムニバースゴールド波動', mult: 350, cost: 850000000000000000, bought: false, desc: '全収益 さらに350倍' },
-            { id: 'boost21', name: '絶対存在の黄金共振', mult: 500, cost: 6500000000000000000, bought: false, desc: '全収益 さらに500倍' },
-            { id: 'boost22', name: '時間停止の黄金蓄積', mult: 1000, cost: 50000000000000000000, bought: false, desc: '全収益 さらに1,000倍' },
-            { id: 'boost23', name: '真理の扉開扉', mult: 2500, cost: 400000000000000000000, bought: false, desc: '全収益 さらに2,500倍' },
-            { id: 'boost24', name: '全次元の富の特異点', mult: 5000, cost: 3000000000000000000000, bought: false, desc: '全収益 さらに5,000倍' },
-            { id: 'boost25', name: '無量大数マスター', mult: 20000, cost: 25000000000000000000000, bought: false, desc: '全収益 さらに20,000倍' }
+        const INITIAL_BOOSTERS = [
+            { id: 'boost1', name: 'ゴールド・ブースター I', mult: 1.5, cost: 200, bought: false, desc: '全体収入 1.5倍' },
+            { id: 'boost2', name: 'ゴールド・ブースター II', mult: 2.0, cost: 1500, bought: false, desc: '全体収入 さらに2.0倍' },
+            { id: 'boost3', name: 'ゴールド・ブースター III', mult: 2.5, cost: 10000, bought: false, desc: '全体収入 さらに2.5倍' },
+            { id: 'boost4', name: '超電導コアブースト', mult: 3.0, cost: 80000, bought: false, desc: '全体収入 さらに3.0倍' },
+            { id: 'boost5', name: 'ハイパー・インフレーション', mult: 4.0, cost: 500000, bought: false, desc: '全体収入 さらに4.0倍' },
+            { id: 'boost6', name: '黄金郷の呪縛解呪', mult: 5.0, cost: 3500000, bought: false, desc: '全体収入 さらに5.0倍' },
+            { id: 'boost7', name: '宇宙背景放射共鳴', mult: 7.0, cost: 25000000, bought: false, desc: '全体収入 さらに7.0倍' },
+            { id: 'boost8', name: 'オムニバース過熱ドメイン', mult: 10.0, cost: 200000000, bought: false, desc: '全体収入 さらに10.0倍' }
         ];
 
-        const SOUL_SKILLS = [
-            { id: 'soulAutoClick', name: '自動神威タップ', cost: 1, level: 0, maxLevel: 5, desc: '毎秒自動でメインコインを1~5回自動タップします。' },
-            { id: 'soulStarter', name: 'スタート資金', cost: 2, level: 0, maxLevel: 3, desc: '昇天開始時に10,000 / 1M / 100Mの初期資金を自動獲得。' },
-            { id: 'cometMagnet', name: '流星引き寄せ磁力', cost: 2, level: 0, maxLevel: 3, desc: '黄金の流星の出現頻度が50% / 100% / 200% アップ！' },
-            { id: 'feverBoost', name: 'フィーバー倍率強化', cost: 3, level: 0, maxLevel: 3, desc: '黄金フィーバー中の収益倍率が 7倍 → 12倍 → 20倍 → 35倍 にアップ！' },
-            { id: 'casinoLuck', name: 'ギャンブラーの強運', cost: 3, level: 0, maxLevel: 2, desc: 'カジノの勝利倍率が 2.0倍 → 2.2倍 → 2.5倍 にアップ！' },
-            { id: 'soulBoostUp', name: 'ソウル効率覚醒', cost: 5, level: 0, maxLevel: 3, desc: 'ソウル1個あたりの永久収入加護が +10% → +15% → +20% → +30% に上昇！' }
+        const INITIAL_SOUL_SKILLS = [
+            { id: 'soulSkill1', name: 'ヘブンリー・タップ', cost: 1, bought: false, desc: 'タップ基本力が +50% 上昇' },
+            { id: 'soulSkill2', name: 'オートファクトリー共鳴', cost: 3, bought: false, desc: '全施設の効率が +100% 上昇' },
+            { id: 'soulSkill3', name: '流星引き寄せ磁場', cost: 5, bought: false, desc: '黄金の流星が出現する確率が 2倍' },
+            { id: 'soulSkill4', name: '黄金フィーバー延長', cost: 10, bought: false, desc: 'フィーバーの持続時間が +10秒 加算' },
+            { id: 'soulSkill5', name: 'ソウル・オーバーロード', cost: 25, bought: false, desc: 'ソウルの1個あたり効果が +10% -> +20% に強化' }
         ];
 
-        const ACHIEVEMENTS = [
-            { id: 'c1', name: 'ファーストタップ', desc: 'コインを1回クリックする', check: (s) => s.stats.clicks >= 1 },
-            { id: 'c100', name: 'タップの達人', desc: 'コインを100回クリックする', check: (s) => s.stats.clicks >= 100 },
-            { id: 'c1000', name: '指先の魔術師', desc: 'コインを1,000回クリックする', check: (s) => s.stats.clicks >= 1000 },
-            { id: 'c10000', name: '神速の連打王', desc: 'コインを10,000回クリックする', check: (s) => s.stats.clicks >= 10000 },
-            
-            { id: 'm1k', name: '小銭持ち', desc: '所持金 1,000 (1K) コイン達する', check: (s) => s.coins >= 1e3 },
-            { id: 'm1m', name: '百一万長者', desc: '所持金 1,000,000 (1M) コインに達する', check: (s) => s.coins >= 1e6 },
-            { id: 'm1b', name: '大富豪の仲間入り', desc: '所持金 1,000,000,000 (1B) コインに達する', check: (s) => s.coins >= 1e9 },
-            { id: 'm1t', name: '国家予算突破', desc: '所持金 1T コインに達する', check: (s) => s.coins >= 1e12 },
-            { id: 'm1qa', name: '地球所有者', desc: '所持金 1Qa コインに達する', check: (s) => s.coins >= 1e15 },
-            { id: 'm1qi', name: '宇宙を動かす富', desc: '所持金 1Qi コインに達する', check: (s) => s.coins >= 1e18 },
-            { id: 'm1sx', name: '銀河の覇者', desc: '所持金 1Sx コインに達する', check: (s) => s.coins >= 1e21 },
-
-            { id: 'f10', name: '自動化の第一歩', desc: '施設を合計10個所有する', check: (s) => getTotalFacilitiesCount(s) >= 10 },
-            { id: 'f100', name: '産業革命', desc: '施設を合計100個所有する', check: (s) => getTotalFacilitiesCount(s) >= 100 },
-            { id: 'f500', name: '巨大メガコーポ', desc: '施設を合計500個所有する', check: (s) => getTotalFacilitiesCount(s) >= 500 },
-            { id: 'f1000', name: '全自動文明', desc: '施設を合計1,000個所有する', check: (s) => getTotalFacilitiesCount(s) >= 1000 },
-
-            { id: 'comet1', name: '流星群ハンター', desc: '黄金の流星を1回タップする', check: (s) => s.stats.cometsClicked >= 1 },
-            { id: 'comet10', name: '星に願いを', desc: '黄金の流星を10回タップする', check: (s) => s.stats.cometsClicked >= 10 },
-            { id: 'comet50', name: '宇宙の観測者', desc: '黄金の流星を50回タップする', check: (s) => s.stats.cometsClicked >= 50 },
-
-            { id: 'asc1', name: '新たな次元へ', desc: '1回昇天を行う', check: (s) => s.stats.ascensions >= 1 },
-            { id: 'asc5', name: '輪廻転生者', desc: '5回昇天を行う', check: (s) => s.stats.ascensions >= 5 },
-
-            { id: 'cas1', name: 'ビギナーズラック', desc: 'カジノで1回勝利する', check: (s) => s.stats.casinoWins >= 1 },
-            { id: 'cas10', name: 'ギャンブルキング', desc: 'カジノで10回勝利する', check: (s) => s.stats.casinoWins >= 10 }
+        const INITIAL_ACHIEVEMENTS = [
+            { id: 'ach1', name: 'ファーストステップ', desc: 'コインを10回クリックする', check: s => s.stats.totalClicks >= 10, done: false },
+            { id: 'ach2', name: '連打マスター', desc: 'コインを500回クリックする', check: s => s.stats.totalClicks >= 500, done: false },
+            { id: 'ach3', name: 'クリックの鬼', desc: 'コインを5,000回クリックする', check: s => s.stats.totalClicks >= 5000, done: false },
+            { id: 'ach4', name: '脱・手動', desc: '自動施設を累計10個購入する', check: s => s.autoClickers.reduce((a,c)=>a+c.count,0) >= 10, done: false },
+            { id: 'ach5', name: '自動化帝国', desc: '自動施設を累計100個購入する', check: s => s.autoClickers.reduce((a,c)=>a+c.count,0) >= 100, done: false },
+            { id: 'ach6', name: 'ゴールド初心者', desc: '累計獲得コイン 1,000', check: s => s.stats.totalCoinsEarned >= 1000, done: false },
+            { id: 'ach7', name: 'コイン長者', desc: '累計獲得コイン 1,000,000 (1M)', check: s => s.stats.totalCoinsEarned >= 1e6, done: false },
+            { id: 'ach8', name: '億万長者', desc: '累計獲得コイン 1,000,000,000 (1B)', check: s => s.stats.totalCoinsEarned >= 1e9, done: false },
+            { id: 'ach9', name: '兆万長者', desc: '累計獲得コイン 1,000,000,000,000 (1T)', check: s => s.stats.totalCoinsEarned >= 1e12, done: false },
+            { id: 'ach10', name: '国家予算超え', desc: '累計獲得コイン 1,000,000,000,000,000 (1Qa)', check: s => s.stats.totalCoinsEarned >= 1e15, done: false },
+            { id: 'ach11', name: 'ギャンブラーの初陣', desc: 'カジノで1回勝利する', check: s => s.stats.casinoWins >= 1, done: false },
+            { id: 'ach12', name: 'カジノ王', desc: 'カジノで累計10回勝利する', check: s => s.stats.casinoWins >= 10, done: false },
+            { id: 'ach13', name: '流星ハンター', desc: '黄金の流星を3回撃墜する', check: s => s.stats.cometsClicked >= 3, done: false },
+            { id: 'ach14', name: '転生の儀式', desc: '初めて昇天して次元を上昇させる', check: s => s.ascensionCount >= 1, done: false },
+            { id: 'ach15', name: '次元超越者', desc: '昇天レベル Lv.5 に到達する', check: s => s.ascensionCount >= 5, done: false }
         ];
 
+        // ゲーム状態データ
         let state = {
             coins: 0,
-            totalCoinsThisAscension: 0,
-            totalCoinsLifetime: 0,
-            souls: 0,
             clickPowerLevel: 1,
-            clickPowerCost: 10,
+            ascensionCount: 0,
+            souls: 0,
             autoClickers: JSON.parse(JSON.stringify(INITIAL_AUTO_CLICKERS)),
             clickMultipliers: JSON.parse(JSON.stringify(INITIAL_CLICK_MULTIPLIERS)),
-            globalBoosters: JSON.parse(JSON.stringify(INITIAL_GLOBAL_BOOSTERS)),
-            soulSkills: JSON.parse(JSON.stringify(SOUL_SKILLS)),
-            unlockedAchieves: [],
-            soundEnabled: true,
+            boosters: JSON.parse(JSON.stringify(INITIAL_BOOSTERS)),
+            soulSkills: JSON.parse(JSON.stringify(INITIAL_SOUL_SKILLS)),
+            achievements: INITIAL_ACHIEVEMENTS.map(a => ({ ...a })),
+            feverTimeLeft: 0,
+            soundOn: true,
+            lastTime: Date.now(),
             stats: {
-                clicks: 0,
+                totalClicks: 0,
+                totalCoinsEarned: 0,
                 cometsClicked: 0,
-                ascensions: 0,
                 casinoWins: 0,
-                casinoLosses: 0,
-                feverCount: 0
-            },
-            lastSaveTime: Date.now()
+                casinoLosses: 0
+            }
         };
 
-        let currentTab = 'facilities';
+        // Web Audio API による効果音生成
         let audioCtx = null;
-        let feverTimeLeft = 0;
-        let feverTimerInterval = null;
-
-        // オーディオ設定 (Web Audio API)
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
         function playSound(type) {
-            if (!state.soundEnabled) return;
+            if (!state.soundOn) return;
             try {
-                initAudio();
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
 
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
@@ -692,702 +645,713 @@
                 if (type === 'click') {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(800, now);
-                    osc.frequency.exponentialRampToValueAtTime(1300, now + 0.06);
-                    gain.gain.setValueAtTime(0.12, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+                    osc.frequency.exponentialRampToValueAtTime(1200, now + 0.05);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.05);
                     osc.start(now);
-                    osc.stop(now + 0.06);
+                    osc.stop(now + 0.05);
                 } else if (type === 'buy') {
                     osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(523.25, now);
-                    osc.frequency.setValueAtTime(659.25, now + 0.07);
-                    osc.frequency.setValueAtTime(783.99, now + 0.14);
-                    gain.gain.setValueAtTime(0.1, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(880, now + 0.08);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.18);
                     osc.start(now);
-                    osc.stop(now + 0.28);
+                    osc.stop(now + 0.18);
                 } else if (type === 'comet') {
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(400, now);
-                    osc.frequency.exponentialRampToValueAtTime(1600, now + 0.4);
-                    gain.gain.setValueAtTime(0.15, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    osc.frequency.setValueAtTime(783.99, now + 0.16);
+                    osc.frequency.setValueAtTime(1046.50, now + 0.24);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.4);
                     osc.start(now);
                     osc.stop(now + 0.4);
-                } else if (type === 'win') {
+                } else if (type === 'ascend') {
                     osc.type = 'sine';
-                    osc.frequency.setValueAtTime(587.33, now);
-                    osc.frequency.setValueAtTime(880, now + 0.12);
-                    gain.gain.setValueAtTime(0.15, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.5);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.5);
                     osc.start(now);
-                    osc.stop(now + 0.35);
+                    osc.stop(now + 0.5);
                 }
-            } catch (e) {}
+            } catch (e) {
+                // サウンドエラーのハンドリング
+            }
         }
 
         function toggleSound() {
-            state.soundEnabled = !state.soundEnabled;
-            const icon = document.getElementById('soundIcon');
-            const text = document.getElementById('soundText');
-            if (state.soundEnabled) {
-                icon.className = 'fa-solid fa-volume-high text-yellow-400';
-                text.innerText = 'Sound ON';
-                showToast('Sound Turned ON');
-            } else {
-                icon.className = 'fa-solid fa-volume-xmark text-slate-500';
-                text.innerText = 'Sound OFF';
-                showToast('Sound Turned OFF');
-            }
+            state.soundOn = !state.soundOn;
+            document.getElementById('soundText').innerText = state.soundOn ? 'Sound ON' : 'Sound OFF';
+            document.getElementById('soundIcon').className = state.soundOn ? 'fa-solid fa-volume-high text-yellow-400' : 'fa-solid fa-volume-xmark text-slate-500';
             saveGame();
         }
 
-        function formatNum(num) {
-            if (num === null || num === undefined || isNaN(num)) return '0';
-            if (num < 1000) return Math.floor(num).toLocaleString('en-US');
-
-            const baseIndex = Math.floor(Math.log10(num) / 3);
-            
-            if (baseIndex < ENGLISH_UNITS.length) {
-                const unit = ENGLISH_UNITS[baseIndex];
-                const divisor = Math.pow(10, baseIndex * 3);
-                const val = num / divisor;
-
-                let formattedStr;
-                if (val >= 100) {
-                    formattedStr = Math.floor(val).toLocaleString('en-US');
-                } else if (val >= 10) {
-                    formattedStr = val.toFixed(1);
-                } else {
-                    formattedStr = val.toFixed(2);
-                }
-
-                return `${formattedStr} ${unit}`;
-            }
-
-            return num.toExponential(2);
+        // 数値フォーマット関数
+        function formatNumber(num) {
+            if (num < 1000) return Math.floor(num).toString();
+            const e = Math.floor(Math.log10(num) / 3);
+            if (e >= ENGLISH_UNITS.length) return num.toExponential(2);
+            const unit = ENGLISH_UNITS[e];
+            const scaled = num / Math.pow(10, e * 3);
+            return scaled.toFixed(2) + ' ' + unit;
         }
 
-        function getTotalFacilitiesCount(s) {
-            return (s || state).autoClickers.reduce((sum, f) => sum + f.count, 0);
+        // 昇天に必要な条件
+        function getRequiredCoinsForAscension() {
+            const baseMin = 1e9; // 1B
+            return baseMin * Math.pow(100, state.ascensionCount);
         }
 
-        // ソウル加護計算
-        function getSoulBoostPercent() {
-            const skillLevel = state.soulSkills.find(s => s.id === 'soulBoostUp')?.level || 0;
-            const perSoul = 10 + (skillLevel * 5); // 10%, 15%, 20%, 25%, 35%
+        // 獲得可能ソウルの計算
+        function getClaimableSouls() {
+            const req = getRequiredCoinsForAscension();
+            if (state.coins < req) return 0;
+            const ratio = state.coins / req;
+            return Math.floor(Math.pow(ratio, 0.5) * (1 + state.ascensionCount * 0.5));
+        }
+
+        // 全体計算パラメータ
+        function getGlobalMultiplier() {
+            let mult = 1.0;
+            state.boosters.forEach(b => { if (b.bought) mult *= b.mult; });
+            return mult;
+        }
+
+        function getSoulBoost() {
+            const perSoul = state.soulSkills.find(s => s.id === 'soulSkill5' && s.bought) ? 0.20 : 0.10;
             return state.souls * perSoul;
         }
 
-        // 実績ボーナス計算
-        function getAchieveBoostPercent() {
-            return state.unlockedAchieves.length * 2; // 実績1個につき+2%
-        }
-
-        // フィーバー倍率
-        function getFeverMult() {
-            if (feverTimeLeft <= 0) return 1;
-            const skillLevel = state.soulSkills.find(s => s.id === 'feverBoost')?.level || 0;
-            const mults = [7, 12, 20, 35];
-            return mults[skillLevel] || 7;
-        }
-
-        function getGlobalMultiplier() {
-            let mult = 1;
-            state.globalBoosters.forEach(b => {
-                if (b.bought) mult *= b.mult;
-            });
-
-            // ソウル加護
-            mult *= (1 + getSoulBoostPercent() / 100);
-
-            // 実績加護
-            mult *= (1 + getAchieveBoostPercent() / 100);
-
-            // フィーバー倍率
-            mult *= getFeverMult();
-
-            return mult;
-        }
-
-        function getClickMultiplier() {
-            let mult = 1;
-            state.clickMultipliers.forEach(m => {
-                if (m.bought) mult *= m.mult;
-            });
-            return mult;
+        function getAchieveBoost() {
+            const completedCount = state.achievements.filter(a => a.done).length;
+            return completedCount * 0.02;
         }
 
         function getClickPower() {
-            const base = state.clickPowerLevel;
-            return base * getClickMultiplier() * getGlobalMultiplier();
+            let basePower = state.clickPowerLevel;
+            if (state.soulSkills.find(s => s.id === 'soulSkill1' && s.bought)) {
+                basePower *= 1.5;
+            }
+            let clickMult = 1.0;
+            state.clickMultipliers.forEach(m => { if (m.bought) clickMult *= m.mult; });
+            
+            let total = basePower * clickMult * getGlobalMultiplier() * (1 + getSoulBoost() + getAchieveBoost());
+            if (state.feverTimeLeft > 0) total *= 7;
+            return Math.max(1, Math.floor(total));
         }
 
         function getCPS() {
-            const baseCPS = state.autoClickers.reduce((sum, item) => sum + (item.cps * item.count), 0);
-            return baseCPS * getGlobalMultiplier();
+            let baseCPS = 0;
+            const facSkill = state.soulSkills.find(s => s.id === 'soulSkill2' && s.bought);
+            const facMult = facSkill ? 2.0 : 1.0;
+
+            state.autoClickers.forEach(item => {
+                baseCPS += item.cps * item.count * facMult;
+            });
+
+            let total = baseCPS * getGlobalMultiplier() * (1 + getSoulBoost() + getAchieveBoost());
+            if (state.feverTimeLeft > 0) total *= 7;
+            return total;
         }
 
-        // 獲得可能ソウル数計算
-        function getClaimableSouls() {
-            if (state.totalCoinsThisAscension < 1e9) return 0;
-            return Math.floor(Math.pow(state.totalCoinsThisAscension / 1e9, 0.28));
-        }
-
-        function clickCoin(e) {
-            const gain = getClickPower();
-            addCoins(gain);
-            state.stats.clicks++;
+        // コインクリックイベント
+        const coinBtn = document.getElementById('coinButton');
+        function handleCoinClick(e) {
+            const earned = getClickPower();
+            state.coins += earned;
+            state.stats.totalCoinsEarned += earned;
+            state.stats.totalClicks++;
 
             playSound('click');
-            createPopup(e, `+${formatNum(gain)}`);
-            checkAchievements();
+            
+            // 座標計算
+            let x, y;
+            if (e && e.clientX) {
+                x = e.clientX;
+                y = e.clientY;
+            } else {
+                const rect = coinBtn.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+            }
+
+            createClickPopup(x, y, `+${formatNumber(earned)}`);
             updateUI();
         }
 
-        function addCoins(amount) {
-            state.coins += amount;
-            state.totalCoinsThisAscension += amount;
-            state.totalCoinsLifetime += amount;
-        }
+        coinBtn.addEventListener('click', handleCoinClick);
 
-        function createPopup(e, text) {
-            const container = document.getElementById('coinClickContainer');
-            const rect = container.getBoundingClientRect();
-
-            let x, y;
-            if (e && e.clientX) {
-                x = e.clientX - rect.left;
-                y = e.clientY - rect.top;
-            } else {
-                x = rect.width / 2 + (Math.random() * 40 - 20);
-                y = rect.height / 2 + (Math.random() * 40 - 20);
+        // キーボードSpace対応（画面スクロール防止 & 確実な連打動作）
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.key === ' ') {
+                const activeTag = document.activeElement ? document.activeElement.tagName : '';
+                if (activeTag !== 'INPUT' && activeTag !== 'TEXTAREA') {
+                    e.preventDefault(); // 画面のスクロールを完全に阻止
+                    if (!e.repeat) {
+                        handleCoinClick();
+                    }
+                }
             }
+        });
 
+        // クリック時ポップアップテキスト
+        function createClickPopup(x, y, text) {
             const popup = document.createElement('div');
-            popup.className = 'click-popup text-yellow-300 text-base sm:text-xl font-black';
+            popup.className = 'click-popup text-yellow-300 text-lg sm:text-xl font-black';
             popup.innerText = text;
-            popup.style.left = `${x}px`;
-            popup.style.top = `${y}px`;
-
-            container.appendChild(popup);
-
-            setTimeout(() => {
-                popup.remove();
-            }, 820);
+            popup.style.left = `${x - 20}px`;
+            popup.style.top = `${y - 30}px`;
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 850);
         }
 
-        // タップ力強化購入
-        function buyClickPower() {
-            if (state.coins >= state.clickPowerCost) {
-                state.coins -= state.clickPowerCost;
-                state.clickPowerLevel++;
-                state.clickPowerCost = Math.floor(state.clickPowerCost * 1.85);
+        // タブ切り替え logic
+        function switchTab(tab) {
+            const tabs = ['facilities', 'click', 'boost', 'ascension', 'casino', 'achieve', 'stats'];
+            tabs.forEach(t => {
+                const content = document.getElementById(`tabContent${capitalize(t)}`);
+                const btn = document.getElementById(`tabBtn${capitalize(t)}`);
+                if (content && btn) {
+                    if (t === tab) {
+                        content.classList.remove('hidden');
+                        btn.className = 'flex-1 min-w-[80px] py-2 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-yellow-500 text-slate-950 shadow';
+                    } else {
+                        content.classList.add('hidden');
+                        btn.className = 'flex-1 min-w-[80px] py-2 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-slate-800/80 text-slate-400 hover:text-slate-200';
+                    }
+                }
+            });
+        }
 
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // 基本タップ力購入
+        function buyClickPower(btn) {
+            if (btn) btn.blur();
+            const cost = Math.floor(10 * Math.pow(1.5, state.clickPowerLevel - 1));
+            if (state.coins >= cost) {
+                state.coins -= cost;
+                state.clickPowerLevel++;
                 playSound('buy');
                 showToast(`タップ基本力が Lv.${state.clickPowerLevel} にアップ！`);
                 updateUI();
-                saveGame();
             }
         }
 
-        function buyClickMultiplier(index) {
-            const item = state.clickMultipliers[index];
-            if (!item.bought && state.coins >= item.cost) {
-                state.coins -= item.cost;
-                item.bought = true;
-
-                playSound('buy');
-                showToast(`${item.name} を解放！ (${formatNum(item.mult)}倍)`);
-                updateUI();
-                saveGame();
-            }
-        }
-
-        function buyGlobalBooster(index) {
-            const item = state.globalBoosters[index];
-            if (!item.bought && state.coins >= item.cost) {
-                state.coins -= item.cost;
-                item.bought = true;
-
-                playSound('buy');
-                showToast(`${item.name} を解放！ (${formatNum(item.mult)}倍)`);
-                updateUI();
-                saveGame();
-            }
-        }
-
-        function buyAutoClicker(index) {
+        // 施設購入
+        function buyAutoClicker(index, el) {
+            if (el) el.blur();
             const item = state.autoClickers[index];
             if (state.coins >= item.cost) {
                 state.coins -= item.cost;
                 item.count++;
                 item.cost = Math.floor(item.baseCost * Math.pow(1.15, item.count));
-
                 playSound('buy');
-                showToast(`${item.name} を購入！ (所有: ${item.count})`);
-                checkAchievements();
                 updateUI();
-                saveGame();
             }
         }
 
-        function spawnComet() {
-            const cometEl = document.getElementById('goldenComet');
-            if (!cometEl) return;
-
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 120);
-            cometEl.style.left = `${x}px`;
-            cometEl.style.top = `${y}px`;
-            cometEl.classList.remove('hidden');
-
-            // 15秒後に自然消滅
-            setTimeout(() => {
-                cometEl.classList.add('hidden');
-            }, 15000);
-        }
-
-        function clickComet(e) {
-            e.stopPropagation();
-            const cometEl = document.getElementById('goldenComet');
-            cometEl.classList.add('hidden');
-
-            state.stats.cometsClicked++;
-            playSound('comet');
-
-            // 50%でフィーバー / 50%で即時15分CPS
-            if (Math.random() < 0.5) {
-                startFever(15);
-                showToast('黄金フィーバー発動！ 全収入大幅アップ！');
-            } else {
-                const instantCash = Math.max(100, getCPS() * 900); // 15分分
-                addCoins(instantCash);
-                showToast(`流星ボーナス！ +${formatNum(instantCash)} コイン獲得！`);
-            }
-
-            checkAchievements();
-            updateUI();
-            saveGame();
-        }
-
-        function startFever(seconds) {
-            feverTimeLeft += seconds;
-            state.stats.feverCount++;
-
-            document.getElementById('coinSection').classList.add('fever-active-bg');
-            document.getElementById('feverBanner').classList.remove('hidden');
-            document.getElementById('feverMultText').innerText = getFeverMult();
-
-            if (!feverTimerInterval) {
-                feverTimerInterval = setInterval(() => {
-                    feverTimeLeft--;
-                    document.getElementById('feverTimer').innerText = `${feverTimeLeft}s`;
-
-                    if (feverTimeLeft <= 0) {
-                        clearInterval(feverTimerInterval);
-                        feverTimerInterval = null;
-                        document.getElementById('coinSection').classList.remove('fever-active-bg');
-                        document.getElementById('feverBanner').classList.add('hidden');
-                    }
-                    updateUI();
-                }, 1000);
+        // クリック倍率購入
+        function buyClickMultiplier(index, el) {
+            if (el) el.blur();
+            const item = state.clickMultipliers[index];
+            if (!item.bought && state.coins >= item.cost) {
+                state.coins -= item.cost;
+                item.bought = true;
+                playSound('buy');
+                showToast(`強化完了: ${item.name}`);
+                updateUI();
             }
         }
 
+        // ブースター購入
+        function buyBooster(index, el) {
+            if (el) el.blur();
+            const item = state.boosters[index];
+            if (!item.bought && state.coins >= item.cost) {
+                state.coins -= item.cost;
+                item.bought = true;
+                playSound('buy');
+                showToast(`ブースト発動: ${item.name}`);
+                updateUI();
+            }
+        }
+
+        // ソウルスキル購入
+        function buySoulSkill(index, el) {
+            if (el) el.blur();
+            const item = state.soulSkills[index];
+            if (!item.bought && state.souls >= item.cost) {
+                state.souls -= item.cost;
+                item.bought = true;
+                playSound('buy');
+                showToast(`パッシブ解放: ${item.name}`);
+                updateUI();
+            }
+        }
+
+        // 昇天実行処理
         function doAscend() {
-            const claimable = getClaimableSouls();
-            if (claimable <= 0) return;
+            const reqCoins = getRequiredCoinsForAscension();
+            if (state.coins < reqCoins) return;
 
-            state.souls += claimable;
-            state.stats.ascensions++;
+            const earnedSouls = getClaimableSouls();
+            if (earnedSouls <= 0) return;
 
-            // スタート資金スキルの確認
-            const starterLvl = state.soulSkills.find(s => s.id === 'soulStarter')?.level || 0;
-            const starterCoins = [0, 10000, 1000000, 100000000][starterLvl] || 0;
+            state.souls += earnedSouls;
+            state.ascensionCount++;
 
-            // コイン・施設・ブーストのリセット
-            state.coins = starterCoins;
-            state.totalCoinsThisAscension = starterCoins;
+            // 進行データをリセット
+            state.coins = 0;
             state.clickPowerLevel = 1;
-            state.clickPowerCost = 10;
             state.autoClickers = JSON.parse(JSON.stringify(INITIAL_AUTO_CLICKERS));
             state.clickMultipliers = JSON.parse(JSON.stringify(INITIAL_CLICK_MULTIPLIERS));
-            state.globalBoosters = JSON.parse(JSON.stringify(INITIAL_GLOBAL_BOOSTERS));
+            state.boosters = JSON.parse(JSON.stringify(INITIAL_BOOSTERS));
 
-            playSound('comet');
-            showToast(`昇天完了！ +${claimable} Souls を獲得しました！`);
-            checkAchievements();
-            renderShopDOM();
-            updateUI();
+            playSound('ascend');
+            showToast(`昇天完了！ Level ${state.ascensionCount} に到達し +${earnedSouls} Souls 獲得！`);
             saveGame();
+            updateUI();
         }
 
-        function buySoulSkill(index) {
-            const skill = state.soulSkills[index];
-            if (skill.level < skill.maxLevel && state.souls >= skill.cost) {
-                state.souls -= skill.cost;
-                skill.level++;
-
-                playSound('buy');
-                showToast(`ソウル技能 ${skill.name} (Lv.${skill.level}) を習得！`);
-                renderSoulSkillTree();
-                updateUI();
-                saveGame();
-            }
-        }
-
+        // カジノ処理
         function setBetPercent(pct) {
             const bet = Math.floor(state.coins * pct);
             document.getElementById('betInput').value = bet;
         }
 
         function playCasino(choice) {
-            const betInput = document.getElementById('betInput');
-            const bet = parseInt(betInput.value, 10);
+            const bet = parseInt(document.getElementById('betInput').value) || 0;
+            const resDiv = document.getElementById('casinoResult');
+            resDiv.classList.remove('hidden');
 
-            if (isNaN(bet) || bet <= 0 || bet > state.coins) {
-                showToast('正しい賭け金を指定してください！');
+            if (bet <= 0 || bet > state.coins) {
+                resDiv.className = 'mt-4 p-3 rounded-xl bg-red-900/40 border border-red-700/50 text-xs font-bold text-red-300';
+                resDiv.innerText = '有効な賭けコインを入力してください。';
                 return;
             }
 
-            state.coins -= bet;
-            const isWin = Math.random() < 0.5;
-            const resEl = document.getElementById('casinoResult');
-            resEl.classList.remove('hidden');
+            const win = Math.random() < 0.5;
+            const outcome = win ? choice : (choice === 'heads' ? 'tails' : 'heads');
 
-            const luckLvl = state.soulSkills.find(s => s.id === 'casinoLuck')?.level || 0;
-            const winMult = [2.0, 2.2, 2.5][luckLvl] || 2.0;
-
-            if (isWin) {
-                const payout = Math.floor(bet * winMult);
-                addCoins(payout);
+            if (win) {
+                state.coins += bet;
+                state.stats.totalCoinsEarned += bet;
                 state.stats.casinoWins++;
-                playSound('win');
-                resEl.className = 'mt-4 p-3 rounded-xl bg-emerald-950/80 border border-emerald-700 text-xs font-bold text-emerald-300';
-                resEl.innerHTML = `<i class="fa-solid fa-trophy mr-1"></i> 大勝利！ +${formatNum(payout)} コインを獲得！`;
+                playSound('comet');
+                resDiv.className = 'mt-4 p-3 rounded-xl bg-emerald-900/40 border border-emerald-700/50 text-xs font-bold text-emerald-300';
+                resDiv.innerText = `結果: 【${outcome === 'heads' ? '表' : '裏'}】 大勝利！ +${formatNumber(bet)} コインを獲得！`;
             } else {
+                state.coins -= bet;
                 state.stats.casinoLosses++;
                 playSound('click');
-                resEl.className = 'mt-4 p-3 rounded-xl bg-red-950/80 border border-red-700 text-xs font-bold text-red-300';
-                resEl.innerHTML = `<i class="fa-solid fa-face-frown mr-1"></i> 残念... -${formatNum(bet)} コインを失いました。`;
+                resDiv.className = 'mt-4 p-3 rounded-xl bg-red-900/40 border border-red-700/50 text-xs font-bold text-red-300';
+                resDiv.innerText = `結果: 【${outcome === 'heads' ? '表' : '裏'}】 残念... -${formatNumber(bet)} コインを失いました。`;
             }
-
-            checkAchievements();
-            updateUI();
-            saveGame();
-        }
-
-        function checkAchievements() {
-            ACHIEVEMENTS.forEach(ach => {
-                if (!state.unlockedAchieves.includes(ach.id) && ach.check(state)) {
-                    state.unlockedAchieves.push(ach.id);
-                    playSound('win');
-                    showToast(`🏆 実績解除: [${ach.name}] (+2% 全収入)`);
-                }
-            });
-        }
-
-        function switchTab(tab) {
-            currentTab = tab;
-            const tabs = ['Facilities', 'Click', 'Boost', 'Ascension', 'Casino', 'Achieve', 'Stats'];
-            
-            tabs.forEach(t => {
-                const content = document.getElementById(`tabContent${t}`);
-                const btn = document.getElementById(`tabBtn${t}`);
-                if (content) content.classList.add('hidden');
-                if (btn) btn.className = 'flex-1 min-w-[80px] py-2 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-slate-800/80 text-slate-400 hover:text-slate-200';
-            });
-
-            const activeContent = document.getElementById(`tabContent${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
-            const activeBtn = document.getElementById(`tabBtn${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
-
-            if (activeContent) activeContent.classList.remove('hidden');
-            if (activeBtn) activeBtn.className = 'flex-1 min-w-[80px] py-2 px-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-yellow-500 text-slate-950 shadow';
-
             updateUI();
         }
 
-        function renderShopDOM() {
-            // 1. 自動施設 (50種類)
+        // 初回DOM骨格生成 (100msごとの破棄再生成による点滅を防止)
+        function initStaticDOM() {
+            // Tab 1: 施設
             const facContainer = document.getElementById('autoClickersList');
-            facContainer.innerHTML = '';
-            state.autoClickers.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.id = `auto-card-${item.id}`;
-                card.onclick = () => buyAutoClicker(index);
-                card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 active:scale-[0.99] group';
-                card.innerHTML = `
+            facContainer.innerHTML = state.autoClickers.map((item, idx) => `
+                <div id="fac-card-${idx}" onclick="buyAutoClicker(${idx}, this)" class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-2.5 sm:p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 active:scale-[0.99] group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-lg group-hover:scale-110 transition-transform">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg group-hover:scale-110 transition-transform">
                             <i class="fa-solid ${item.icon}"></i>
                         </div>
                         <div>
                             <div class="font-bold text-xs sm:text-sm text-white flex items-center gap-2">
-                                ${item.name} <span id="auto-count-${item.id}" class="text-[10px] bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full font-bold">0</span>
+                                <span>${item.name}</span>
+                                <span id="fac-count-${idx}" class="text-[10px] bg-slate-700 text-yellow-300 px-2 py-0.5 rounded-full font-bold">x0</span>
                             </div>
                             <div class="text-[11px] text-slate-400 mt-0.5">
-                                CPS: <span class="text-amber-400 font-semibold">+${formatNum(item.cps)}</span>
+                                毎秒: <span class="text-amber-400 font-semibold">+${formatNumber(item.cps)}</span>
                             </div>
                         </div>
                     </div>
-                    <button id="auto-btn-${item.id}" class="px-3 py-1.5 rounded-lg bg-yellow-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1">
+                    <button id="fac-btn-${idx}" class="px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1">
                         <i class="fa-solid fa-coins text-[10px]"></i>
-                        <span id="auto-cost-${item.id}">${formatNum(item.cost)}</span>
+                        <span id="fac-cost-${idx}">0</span>
                     </button>
-                `;
-                facContainer.appendChild(card);
-            });
+                </div>
+            `).join('');
 
-            // 2. タップ倍率 (25種類)
+            // Tab 2: タップ倍率
             const clickMultContainer = document.getElementById('clickMultipliersList');
-            clickMultContainer.innerHTML = '';
-            state.clickMultipliers.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.id = `clickm-card-${item.id}`;
-                card.onclick = () => buyClickMultiplier(index);
-                card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 active:scale-[0.99] group';
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-hand"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-xs sm:text-sm text-white">${item.name}</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">${item.desc}</div>
-                        </div>
-                    </div>
-                    <button id="clickm-btn-${item.id}" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1">
-                        <i class="fa-solid fa-coins text-[10px]"></i>
-                        <span>${formatNum(item.cost)}</span>
-                    </button>
-                `;
-                clickMultContainer.appendChild(card);
-            });
-
-            // 3. 全体ブースト (25種類)
-            const boostContainer = document.getElementById('globalBoostersList');
-            boostContainer.innerHTML = '';
-            state.globalBoosters.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.id = `boost-card-${item.id}`;
-                card.onclick = () => buyGlobalBooster(index);
-                card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 active:scale-[0.99] group';
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-fire"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-xs sm:text-sm text-white">${item.name}</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">${item.desc}</div>
-                        </div>
-                    </div>
-                    <button id="boost-btn-${item.id}" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1">
-                        <i class="fa-solid fa-coins text-[10px]"></i>
-                        <span>${formatNum(item.cost)}</span>
-                    </button>
-                `;
-                boostContainer.appendChild(card);
-            });
-
-            renderSoulSkillTree();
-            renderAchievementsDOM();
-        }
-
-        function renderSoulSkillTree() {
-            const container = document.getElementById('soulSkillTreeList');
-            if (!container) return;
-            container.innerHTML = '';
-
-            state.soulSkills.forEach((skill, index) => {
-                const card = document.createElement('div');
-                card.onclick = () => buySoulSkill(index);
-                card.className = 'bg-slate-800/60 border border-indigo-900/50 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-slate-800 transition';
-                card.innerHTML = `
+            clickMultContainer.innerHTML = state.clickMultipliers.map((item, idx) => `
+                <div id="cmult-card-${idx}" onclick="buyClickMultiplier(${idx}, this)" class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800">
                     <div>
-                        <div class="font-bold text-xs text-indigo-200 flex items-center gap-2">
-                            ${skill.name} <span class="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-700">Lv.${skill.level}/${skill.maxLevel}</span>
-                        </div>
-                        <p class="text-[11px] text-slate-400 mt-0.5">${skill.desc}</p>
+                        <div class="font-bold text-xs text-white">${item.name}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">${item.desc}</div>
                     </div>
-                    <button class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow transition flex items-center gap-1 disabled:opacity-40" ${skill.level >= skill.maxLevel || state.souls < skill.cost ? 'disabled' : ''}>
-                        <i class="fa-solid fa-gem text-[10px]"></i>
-                        <span>${skill.cost} Souls</span>
+                    <button id="cmult-btn-${idx}" class="px-3 py-1.5 rounded-lg text-xs transition">
+                        0
                     </button>
-                `;
-                container.appendChild(card);
-            });
-        }
+                </div>
+            `).join('');
 
-        function renderAchievementsDOM() {
-            const container = document.getElementById('achievementsList');
-            if (!container) return;
-            container.innerHTML = '';
+            // Tab 3: ブースター
+            const boostContainer = document.getElementById('globalBoostersList');
+            boostContainer.innerHTML = state.boosters.map((item, idx) => `
+                <div id="boost-card-${idx}" onclick="buyBooster(${idx}, this)" class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800">
+                    <div>
+                        <div class="font-bold text-xs text-white">${item.name}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">${item.desc}</div>
+                    </div>
+                    <button id="boost-btn-${idx}" class="px-3 py-1.5 rounded-lg text-xs transition">
+                        0
+                    </button>
+                </div>
+            `).join('');
 
-            ACHIEVEMENTS.forEach(ach => {
-                const isUnlocked = state.unlockedAchieves.includes(ach.id);
-                const card = document.createElement('div');
-                card.className = `p-3 rounded-xl border flex items-center justify-between transition ${
-                    isUnlocked ? 'bg-amber-950/30 border-amber-500/40 text-amber-200' : 'bg-slate-900/40 border-slate-800/80 text-slate-500 opacity-60'
-                }`;
-                card.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg border flex items-center justify-center text-base ${
-                            isUnlocked ? 'bg-amber-500/20 border-amber-500/40 text-amber-300' : 'bg-slate-800 border-slate-700 text-slate-600'
-                        }">
-                            <i class="fa-solid ${isUnlocked ? 'fa-trophy' : 'fa-lock'}"></i>
+            // Tab 4: ソウルスキル
+            const soulContainer = document.getElementById('soulSkillTreeList');
+            soulContainer.innerHTML = state.soulSkills.map((item, idx) => `
+                <div id="soul-card-${idx}" onclick="buySoulSkill(${idx}, this)" class="bg-slate-800/60 border border-indigo-900/40 rounded-xl p-2.5 flex items-center justify-between cursor-pointer transition hover:bg-slate-800">
+                    <div>
+                        <div class="font-bold text-xs text-indigo-200">${item.name}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">${item.desc}</div>
+                    </div>
+                    <button id="soul-btn-${idx}" class="px-3 py-1 rounded-lg text-xs transition">
+                        0
+                    </button>
+                </div>
+            `).join('');
+
+            // Tab 6: 実績
+            const achieveContainer = document.getElementById('achievementsList');
+            achieveContainer.innerHTML = state.achievements.map((item, idx) => `
+                <div id="ach-card-${idx}" class="p-2.5 rounded-xl border flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <div id="ach-icon-${idx}" class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-trophy"></i>
                         </div>
                         <div>
-                            <div class="font-bold text-xs text-white">${ach.name}</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">${ach.desc}</div>
+                            <div class="font-bold text-xs text-white">${item.name}</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5">${item.desc}</div>
                         </div>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${isUnlocked ? 'bg-amber-500/20 text-amber-300' : 'bg-slate-800 text-slate-500'}">
-                        ${isUnlocked ? '+2% Boost' : '未達成'}
-                    </span>
-                `;
-                container.appendChild(card);
-            });
-
-            document.getElementById('achieveProgressText').innerText = `${state.unlockedAchieves.length} / ${ACHIEVEMENTS.length}`;
+                    <span id="ach-status-${idx}" class="text-[10px] font-bold"></span>
+                </div>
+            `).join('');
         }
 
+        // UI状態のみの安全な差分更新 (要素の再生成・点滅なし)
         function updateUI() {
-            document.getElementById('coinDisplay').innerText = formatNum(state.coins);
-            document.getElementById('perClickDisplay').innerText = `+${formatNum(getClickPower())}`;
-            document.getElementById('perSecDisplay').innerText = `+${formatNum(getCPS())}`;
-            document.getElementById('globalMultiplierDisplay').innerText = `x${formatNum(getGlobalMultiplier())}`;
+            // 左側所持金と収益
+            document.getElementById('coinDisplay').innerText = formatNumber(state.coins);
+            document.getElementById('perClickDisplay').innerText = `+${formatNumber(getClickPower())}`;
+            document.getElementById('perSecDisplay').innerText = `+${formatNumber(getCPS())}`;
+
+            document.getElementById('globalMultiplierDisplay').innerText = `x${getGlobalMultiplier().toFixed(1)}`;
+            document.getElementById('soulBoostDisplay').innerText = `+${Math.floor(getSoulBoost() * 100)}%`;
+            document.getElementById('achieveBoostDisplay').innerText = `+${Math.floor(getAchieveBoost() * 100)}%`;
             document.getElementById('headerSouls').innerText = `${state.souls} Souls`;
-            document.getElementById('soulBoostDisplay').innerText = `+${getSoulBoostPercent()}%`;
-            document.getElementById('achieveBoostDisplay').innerText = `+${getAchieveBoostPercent()}%`;
 
-            // タップパワー強化
-            document.getElementById('clickPowerLevel').innerText = `Lv.${state.clickPowerLevel}`;
-            document.getElementById('clickPowerIncrease').innerText = `+${state.clickPowerLevel}`;
-            document.getElementById('clickPowerCost').innerText = formatNum(state.clickPowerCost);
-
-            const cpCard = document.getElementById('clickPowerCard');
-            const cpBtn = document.getElementById('clickPowerBtn');
-            if (state.coins >= state.clickPowerCost) {
-                cpBtn.className = 'px-4 py-2 rounded-lg bg-yellow-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1 hover:brightness-110';
-                cpCard.classList.remove('opacity-50');
+            // フィーバー状態
+            const feverBanner = document.getElementById('feverBanner');
+            if (state.feverTimeLeft > 0) {
+                feverBanner.classList.remove('hidden');
+                document.getElementById('feverTimer').innerText = `${Math.ceil(state.feverTimeLeft)}s`;
+                document.getElementById('coinSection').classList.add('fever-active-bg');
             } else {
-                cpBtn.className = 'px-4 py-2 rounded-lg bg-slate-800 text-slate-500 font-bold text-xs transition flex items-center gap-1 cursor-not-allowed';
-                cpCard.classList.add('opacity-50');
+                feverBanner.classList.add('hidden');
+                document.getElementById('coinSection').classList.remove('fever-active-bg');
             }
 
-            // 自動施設ボタン更新
-            state.autoClickers.forEach(item => {
-                const card = document.getElementById(`auto-card-${item.id}`);
-                const btn = document.getElementById(`auto-btn-${item.id}`);
-                const count = document.getElementById(`auto-count-${item.id}`);
-                const cost = document.getElementById(`auto-cost-${item.id}`);
+            // Tab 1: 施設差分更新
+            state.autoClickers.forEach((item, idx) => {
+                const countEl = document.getElementById(`fac-count-${idx}`);
+                if (countEl) countEl.innerText = `x${item.count}`;
+                const costEl = document.getElementById(`fac-cost-${idx}`);
+                if (costEl) costEl.innerText = formatNumber(item.cost);
 
-                if (count) count.innerText = item.count;
-                if (cost) cost.innerText = formatNum(item.cost);
-
-                if (state.coins >= item.cost) {
-                    if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-yellow-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1 hover:brightness-110';
-                    if (card) card.classList.remove('opacity-50');
-                } else {
-                    if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-500 font-bold text-xs transition flex items-center gap-1 cursor-not-allowed';
-                    if (card) card.classList.add('opacity-50');
-                }
-            });
-
-            // クリック倍率更新
-            state.clickMultipliers.forEach(item => {
-                const card = document.getElementById(`clickm-card-${item.id}`);
-                const btn = document.getElementById(`clickm-btn-${item.id}`);
-
-                if (item.bought) {
-                    if (card) card.classList.add('hidden');
-                } else {
-                    if (card) card.classList.remove('hidden');
-                    if (state.coins >= item.cost) {
-                        if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1 hover:brightness-110';
-                        if (card) card.classList.remove('opacity-50');
+                const card = document.getElementById(`fac-card-${idx}`);
+                const btn = document.getElementById(`fac-btn-${idx}`);
+                const canAfford = state.coins >= item.cost;
+                if (card && btn) {
+                    if (canAfford) {
+                        card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-2.5 sm:p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 active:scale-[0.99] group opacity-100';
+                        btn.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs transition flex items-center gap-1';
                     } else {
-                        if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-500 font-bold text-xs transition flex items-center gap-1 cursor-not-allowed';
-                        if (card) card.classList.add('opacity-50');
+                        card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-2.5 sm:p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-60';
+                        btn.className = 'px-3 py-1.5 rounded-lg bg-slate-700 text-slate-400 text-xs transition flex items-center gap-1';
                     }
                 }
             });
 
-            // ブースター更新
-            state.globalBoosters.forEach(item => {
-                const card = document.getElementById(`boost-card-${item.id}`);
-                const btn = document.getElementById(`boost-btn-${item.id}`);
+            // Tab 2: クリックパワー＆倍率
+            const powerCost = Math.floor(10 * Math.pow(1.5, state.clickPowerLevel - 1));
+            document.getElementById('clickPowerLevel').innerText = `Lv.${state.clickPowerLevel}`;
+            document.getElementById('clickPowerIncrease').innerText = `+${state.clickPowerLevel}`;
+            document.getElementById('clickPowerCost').innerText = formatNumber(powerCost);
+            
+            const powerBtn = document.getElementById('clickPowerBtn');
+            if (state.coins >= powerCost) {
+                powerBtn.className = 'px-4 py-2 rounded-lg bg-yellow-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1';
+            } else {
+                powerBtn.className = 'px-4 py-2 rounded-lg bg-slate-700 text-slate-400 font-bold text-xs transition flex items-center gap-1';
+            }
 
-                if (item.bought) {
-                    if (card) card.classList.add('hidden');
-                } else {
-                    if (card) card.classList.remove('hidden');
-                    if (state.coins >= item.cost) {
-                        if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs shadow transition flex items-center gap-1 hover:brightness-110';
-                        if (card) card.classList.remove('opacity-50');
+            state.clickMultipliers.forEach((item, idx) => {
+                const card = document.getElementById(`cmult-card-${idx}`);
+                const btn = document.getElementById(`cmult-btn-${idx}`);
+                const canAfford = state.coins >= item.cost;
+                if (card && btn) {
+                    if (item.bought) {
+                        card.className = 'bg-slate-800/60 border border-emerald-800/50 rounded-xl p-3 flex items-center justify-between opacity-40 pointer-events-none';
+                        btn.className = 'px-3 py-1.5 rounded-lg bg-emerald-600/30 text-emerald-400 font-bold text-xs transition';
+                        btn.innerText = '解放済み';
                     } else {
-                        if (btn) btn.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-500 font-bold text-xs transition flex items-center gap-1 cursor-not-allowed';
-                        if (card) card.classList.add('opacity-50');
+                        btn.innerText = formatNumber(item.cost);
+                        if (canAfford) {
+                            card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-100';
+                            btn.className = 'px-3 py-1.5 rounded-lg bg-yellow-500 text-slate-950 font-bold text-xs transition';
+                        } else {
+                            card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-60';
+                            btn.className = 'px-3 py-1.5 rounded-lg bg-slate-700 text-slate-400 text-xs transition';
+                        }
                     }
                 }
             });
 
-            // 昇天タブ値更新
-            document.getElementById('currentSoulsVal').innerText = `${state.souls} Souls`;
+            // Tab 3: ブースター
+            state.boosters.forEach((item, idx) => {
+                const card = document.getElementById(`boost-card-${idx}`);
+                const btn = document.getElementById(`boost-btn-${idx}`);
+                const canAfford = state.coins >= item.cost;
+                if (card && btn) {
+                    if (item.bought) {
+                        card.className = 'bg-slate-800/60 border border-emerald-800/50 rounded-xl p-3 flex items-center justify-between opacity-40 pointer-events-none';
+                        btn.className = 'px-3 py-1.5 rounded-lg bg-emerald-600/30 text-emerald-400 font-bold text-xs transition';
+                        btn.innerText = '発動中';
+                    } else {
+                        btn.innerText = formatNumber(item.cost);
+                        if (canAfford) {
+                            card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-100';
+                            btn.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs transition';
+                        } else {
+                            card.className = 'bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-60';
+                            btn.className = 'px-3 py-1.5 rounded-lg bg-slate-700 text-slate-400 text-xs transition';
+                        }
+                    }
+                }
+            });
+
+            // Tab 4: 昇天 (Ascension) 動的条件
+            const reqCoins = getRequiredCoinsForAscension();
             const claimable = getClaimableSouls();
+
+            document.getElementById('ascensionLevelBadge').innerText = `Lv. ${state.ascensionCount}`;
+            document.getElementById('currentSoulsVal').innerText = state.souls;
             document.getElementById('claimableSoulsVal').innerText = `+${claimable} Souls`;
+            document.getElementById('ascendRequiredCoinDisplay').innerText = formatNumber(reqCoins);
+
             const ascendBtn = document.getElementById('ascendBtn');
-            if (ascendBtn) ascendBtn.disabled = claimable <= 0;
+            if (state.coins >= reqCoins && claimable > 0) {
+                ascendBtn.disabled = false;
+                ascendBtn.className = 'mt-4 w-full max-w-xs py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 text-white font-black text-xs sm:text-sm shadow-xl hover:brightness-110 active:scale-95 transition cursor-pointer';
+            } else {
+                ascendBtn.disabled = true;
+                ascendBtn.className = 'mt-4 w-full max-w-xs py-3 rounded-xl bg-slate-800 text-slate-500 font-bold text-xs sm:text-sm cursor-not-allowed opacity-60';
+            }
 
-            // 統計グリッド更新
-            updateStatsGrid();
-        }
+            // ソウルスキルツリー
+            state.soulSkills.forEach((item, idx) => {
+                const card = document.getElementById(`soul-card-${idx}`);
+                const btn = document.getElementById(`soul-btn-${idx}`);
+                const canAfford = state.souls >= item.cost;
+                if (card && btn) {
+                    if (item.bought) {
+                        card.className = 'bg-slate-800/60 border border-indigo-500/50 rounded-xl p-2.5 flex items-center justify-between opacity-40 pointer-events-none';
+                        btn.className = 'px-3 py-1 rounded-lg bg-indigo-600/30 text-indigo-300 font-bold text-xs transition';
+                        btn.innerText = '習得済み';
+                    } else {
+                        btn.innerText = `${item.cost} Souls`;
+                        if (canAfford) {
+                            card.className = 'bg-slate-800/60 border border-indigo-900/40 rounded-xl p-2.5 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-100';
+                            btn.className = 'px-3 py-1 rounded-lg bg-indigo-500 text-white font-bold text-xs transition';
+                        } else {
+                            card.className = 'bg-slate-800/60 border border-indigo-900/40 rounded-xl p-2.5 flex items-center justify-between cursor-pointer transition hover:bg-slate-800 opacity-60';
+                            btn.className = 'px-3 py-1 rounded-lg bg-slate-700 text-slate-400 text-xs transition';
+                        }
+                    }
+                }
+            });
 
-        function updateStatsGrid() {
-            const grid = document.getElementById('statsGrid');
-            if (!grid) return;
-            grid.innerHTML = `
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">総タップ数</span>
-                    <div class="text-sm font-bold text-white mt-0.5">${state.stats.clicks.toLocaleString()} 回</div>
-                </div>
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">通算総獲得コイン</span>
-                    <div class="text-sm font-bold text-yellow-400 mt-0.5">${formatNum(state.totalCoinsLifetime)}</div>
-                </div>
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">流星タップ数</span>
-                    <div class="text-sm font-bold text-amber-300 mt-0.5">${state.stats.cometsClicked} 回</div>
-                </div>
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">周回（昇天）回数</span>
-                    <div class="text-sm font-bold text-indigo-300 mt-0.5">${state.stats.ascensions} 回</div>
-                </div>
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">カジノ戦績</span>
-                    <div class="text-sm font-bold text-emerald-300 mt-0.5">${state.stats.casinoWins}勝 / ${state.stats.casinoLosses}敗</div>
-                </div>
-                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50">
-                    <span class="text-slate-400">全所有施設数</span>
-                    <div class="text-sm font-bold text-white mt-0.5">${getTotalFacilitiesCount()} 個</div>
-                </div>
+            // Tab 6: 実績
+            checkAchievements();
+            const completedCount = state.achievements.filter(a => a.done).length;
+            document.getElementById('achieveProgressText').innerText = `${completedCount} / ${state.achievements.length}`;
+
+            state.achievements.forEach((item, idx) => {
+                const card = document.getElementById(`ach-card-${idx}`);
+                const icon = document.getElementById(`ach-icon-${idx}`);
+                const status = document.getElementById(`ach-status-${idx}`);
+                if (card && icon && status) {
+                    if (item.done) {
+                        card.className = 'p-2.5 rounded-xl border flex items-center justify-between bg-amber-950/20 border-amber-500/40';
+                        icon.className = 'w-8 h-8 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-sm';
+                        status.className = 'text-[10px] font-bold text-amber-400';
+                        status.innerText = '達成';
+                    } else {
+                        card.className = 'p-2.5 rounded-xl border flex items-center justify-between bg-slate-800/40 border-slate-800 opacity-60';
+                        icon.className = 'w-8 h-8 rounded-lg bg-slate-800 text-slate-600 flex items-center justify-center font-bold text-sm';
+                        status.className = 'text-[10px] font-bold text-slate-600';
+                        status.innerText = '未達成';
+                    }
+                }
+            });
+
+            // Tab 7: 統計
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">総タップ数:</span> <strong class="text-white">${state.stats.totalClicks.toLocaleString()} 回</strong></div>
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">全累計獲得コイン:</span> <strong class="text-yellow-400">${formatNumber(state.stats.totalCoinsEarned)}</strong></div>
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">流星撃墜数:</span> <strong class="text-amber-300">${state.stats.cometsClicked} 回</strong></div>
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">昇天レベル:</span> <strong class="text-indigo-300">Lv. ${state.ascensionCount}</strong></div>
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">カジノ勝利:</span> <strong class="text-emerald-400">${state.stats.casinoWins} 勝</strong></div>
+                <div class="bg-slate-800/50 p-2.5 rounded-xl border border-slate-700/50"><span class="text-slate-400">カジノ敗北:</span> <strong class="text-red-400">${state.stats.casinoLosses} 敗</strong></div>
             `;
         }
 
+        function checkAchievements() {
+            state.achievements.forEach(a => {
+                if (!a.done && typeof a.check === 'function' && a.check(state)) {
+                    a.done = true;
+                    showToast(`実績解除: ${a.name}! (全収入+2%)`);
+                    playSound('comet');
+                }
+            });
+        }
+
+        // 黄金の流星＆フィーバー logic
+        function spawnComet() {
+            const comet = document.getElementById('goldenComet');
+            if (!comet.classList.contains('hidden')) return;
+
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 120);
+            comet.style.left = `${x}px`;
+            comet.style.top = `${y}px`;
+            comet.classList.remove('hidden');
+
+            setTimeout(() => {
+                if (!comet.classList.contains('hidden')) {
+                    comet.classList.add('hidden');
+                }
+            }, 8000);
+        }
+
+        function clickComet(e) {
+            e.stopPropagation();
+            document.getElementById('goldenComet').classList.add('hidden');
+            state.stats.cometsClicked++;
+
+            let duration = 15;
+            if (state.soulSkills.find(s => s.id === 'soulSkill4' && s.bought)) duration += 10;
+            state.feverTimeLeft = duration;
+
+            playSound('comet');
+            showToast('黄金の流星撃墜！ フィーバータイム発動！');
+            updateUI();
+        }
+
+        // トースト通知関数
         function showToast(msg) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
-            toast.className = 'toast-slide bg-slate-900 border border-yellow-500/50 text-yellow-300 text-xs font-bold px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 backdrop-blur-md';
-            toast.innerHTML = `<i class="fa-solid fa-bell text-yellow-400"></i> <span>${msg}</span>`;
+            toast.className = 'toast-slide bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs shadow-xl flex items-center gap-2 border border-yellow-200';
+            toast.innerHTML = `<i class="fa-solid fa-bell"></i> <span>${msg}</span>`;
             container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
 
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+        // メインタイマー・ループ (100msごと)
+        setInterval(() => {
+            const now = Date.now();
+            const dt = (now - state.lastTime) / 1000;
+            state.lastTime = now;
+
+            // 毎秒自動コイン獲得
+            const earned = getCPS() * dt;
+            if (earned > 0) {
+                state.coins += earned;
+                state.stats.totalCoinsEarned += earned;
+            }
+
+            // フィーバータイマー
+            if (state.feverTimeLeft > 0) {
+                state.feverTimeLeft = Math.max(0, state.feverTimeLeft - dt);
+            }
+
+            // 流星出現判定
+            let chance = 0.0005;
+            if (state.soulSkills.find(s => s.id === 'soulSkill3' && s.bought)) chance *= 2;
+            if (Math.random() < chance) {
+                spawnComet();
+            }
+
+            updateUI();
+        }, 100);
+
+        // 自動セーブタイマー (5秒ごと)
+        setInterval(() => {
+            saveGame();
+        }, 5000);
+
+        // データ保存/読み込み
+        function saveGame() {
+            try {
+                localStorage.setItem('gold_clicker_ultra_ex', JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function loadGame() {
+            try {
+                const saved = localStorage.getItem('gold_clicker_ultra_ex');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    state = Object.assign(state, parsed);
+                    
+                    if (parsed.achievements && Array.isArray(parsed.achievements)) {
+                        state.achievements = INITIAL_ACHIEVEMENTS.map(initAch => {
+                            const savedAch = parsed.achievements.find(a => a.id === initAch.id);
+                            return {
+                                ...initAch,
+                                done: savedAch ? !!savedAch.done : false
+                            };
+                        });
+                    } else {
+                        state.achievements = INITIAL_ACHIEVEMENTS.map(a => ({ ...a }));
+                    }
+
+                    // オフライン経過時間の計算
+                    const now = Date.now();
+                    const offlineSec = Math.floor((now - state.lastTime) / 1000);
+                    state.lastTime = now;
+
+                    if (offlineSec > 10) {
+                        const offlineEarned = getCPS() * Math.min(offlineSec, 86400);
+                        if (offlineEarned > 0) {
+                            state.coins += offlineEarned;
+                            state.stats.totalCoinsEarned += offlineEarned;
+                            document.getElementById('offlineCoinVal').innerText = `+${formatNumber(offlineEarned)}`;
+                            document.getElementById('offlineModal').classList.remove('hidden');
+                        }
+                    }
+                }
+            } catch (e) {}
+        }
+
+        function closeOfflineModal() {
+            document.getElementById('offlineModal').classList.add('hidden');
         }
 
         function openResetModal() {
@@ -1395,96 +1359,19 @@
         }
 
         function closeResetModal() {
-            document.getElementById('resetModal').classList.add('hidden');
+            document.getElementById('resetModal').classList.remove('hidden');
         }
 
         function confirmReset() {
-            localStorage.removeItem('gold_clicker_ex_save');
+            localStorage.removeItem('gold_clicker_ultra_ex');
             location.reload();
         }
 
-        function closeOfflineModal() {
-            document.getElementById('offlineModal').classList.add('hidden');
-        }
-
-        function saveGame() {
-            state.lastSaveTime = Date.now();
-            localStorage.setItem('gold_clicker_ex_save', JSON.stringify(state));
-        }
-
-        function loadGame() {
-            const data = localStorage.getItem('gold_clicker_ex_save');
-            if (data) {
-                try {
-                    const parsed = JSON.parse(data);
-                    state = Object.assign(state, parsed);
-
-                    // 配列長の整合性維持
-                    if (parsed.autoClickers) {
-                        INITIAL_AUTO_CLICKERS.forEach((init, i) => {
-                            if (!state.autoClickers[i]) state.autoClickers[i] = JSON.parse(JSON.stringify(init));
-                        });
-                    }
-
-                    // オフライン放置収益の計算
-                    const now = Date.now();
-                    const offlineSec = Math.floor((now - (state.lastSaveTime || now)) / 1000);
-                    if (offlineSec > 10) {
-                        const offlineGains = Math.floor(getCPS() * offlineSec * 0.5); // 50%効率
-                        if (offlineGains > 0) {
-                            addCoins(offlineGains);
-                            document.getElementById('offlineCoinVal').innerText = `+${formatNum(offlineGains)} コイン (${Math.floor(offlineSec / 60)}分間)`;
-                            document.getElementById('offlineModal').classList.remove('hidden');
-                        }
-                    }
-                } catch (e) {}
-            }
-        }
-
+        // 初期化実行
         window.onload = function() {
             loadGame();
-            renderShopDOM();
+            initStaticDOM();
             updateUI();
-
-            // メインコインクリックイベント
-            document.getElementById('coinButton').addEventListener('click', clickCoin);
-
-            // Spaceキー連打対応
-            window.addEventListener('keydown', (e) => {
-                if (e.code === 'Space' && !e.repeat) {
-                    clickCoin(null);
-                }
-            });
-
-            // 毎秒ゲームループ
-            setInterval(() => {
-                const cps = getCPS();
-                if (cps > 0) {
-                    addCoins(cps);
-                    checkAchievements();
-                    updateUI();
-                }
-
-                // 神威自動タップ
-                const autoTapLvl = state.soulSkills.find(s => s.id === 'soulAutoClick')?.level || 0;
-                if (autoTapLvl > 0) {
-                    for (let i = 0; i < autoTapLvl; i++) {
-                        clickCoin(null);
-                    }
-                }
-            }, 1000);
-
-            // 黄金の流星スポーンループ (45秒〜90秒ごと)
-            setInterval(() => {
-                const magnetLvl = state.soulSkills.find(s => s.id === 'cometMagnet')?.level || 0;
-                const chance = 0.3 + (magnetLvl * 0.2); // 30% 〜 90%
-                if (Math.random() < chance) {
-                    spawnComet();
-                }
-            }, 30000);
-
-            // 自動セーブ (10秒ごと)
-            setInterval(saveGame, 10000);
         };
     </script>
 </body>
